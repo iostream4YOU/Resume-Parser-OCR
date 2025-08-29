@@ -1,0 +1,52 @@
+{
+  "name": "ResumeData",
+  "type": "object",
+  "properties": {
+    "original_filename": {
+      "type": "string",
+      "description": "Original name of the uploaded resume file"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "URL to the uploaded resume file"
+    },
+    "parsing_method": {
+      "type": "string",
+      "enum": [
+        "ai_powered",
+        "ocr"
+      ],
+      "default": "ai_powered",
+      "description": "Method used for parsing the resume"
+    },
+    "parsing_status": {
+      "type": "string",
+      "enum": [
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "processing",
+      "description": "Current status of parsing"
+    },
+    "parsed_data": {
+      "type": "object",
+      "description": "Dynamically structured resume data parsed by the chosen method.",
+      "additionalProperties": true
+    },
+    "processing_time": {
+      "type": "number",
+      "description": "Time taken to process the resume in seconds"
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Confidence score for parsing (0-100)"
+    }
+  },
+  "required": [
+    "original_filename",
+    "file_url"
+  ]
+}
